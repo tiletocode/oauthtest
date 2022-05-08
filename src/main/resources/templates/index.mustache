@@ -3,6 +3,16 @@
 <h1><center>OAuth2 게시판</center></h1>
 <div class="col-md-12">
   <br>
+<!--  userName이 있으면: #userName-->
+  {{#userName}}
+      <img style="border-radius: 70%" src="{{picture}}" alt="pp" width="32" height="32">
+      <span id="user">{{userName}}</span> 님, 안녕하세요! <br><br>
+    <a href="/logout" class="btn btn-info active" role="button">로그아웃</a><br><br>
+  {{/userName}}
+<!--  userName이 없으면: ^userName-->
+  {{^userName}}
+    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">로그인</a><br><br>
+  {{/userName}}
   <!-- 글 목록 -->
   <table class="table table-horizontal table-bordered">
     <thead class="thead-strong">
