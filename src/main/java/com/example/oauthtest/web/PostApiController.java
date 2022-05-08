@@ -1,11 +1,14 @@
 package com.example.oauthtest.web;
 
 import com.example.oauthtest.service.PostsService;
+import com.example.oauthtest.web.dto.PostsListResponseDto;
 import com.example.oauthtest.web.dto.PostsResponseDto;
 import com.example.oauthtest.web.dto.PostsSaveRequestDto;
 import com.example.oauthtest.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,5 +28,16 @@ public class PostApiController {
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
+    }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
+    }
+
+    @GetMapping("/api/v1/posts/list")
+    public List<PostsListResponseDto> findAll() {
+        return postsService.findAllDesc();
     }
 }
