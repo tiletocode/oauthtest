@@ -55,4 +55,10 @@ public class PostsService {
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    //조회수 카운팅
+    @Transactional
+    public int updateView(Long id) {
+        return postsRepository.updateView(id);
+    }
 }
